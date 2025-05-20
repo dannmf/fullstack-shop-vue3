@@ -6,7 +6,7 @@
 
 
 <template>
-  <nav class="bg-teal-600 text-white p-4 flex justify-between items-center">
+  <nav class="bg-teal-700 text-white p-4 flex justify-between items-center">
     <div class="text-lg font-bold">Dashboard</div>
 
     <ul class="flex gap-4">
