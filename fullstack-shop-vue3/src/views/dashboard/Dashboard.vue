@@ -1,13 +1,34 @@
 <!-- src/views/dashboard/Dashboard.vue -->
 <script setup lang="ts">
-import Navbar from '../../components/NavBar.vue'
+import { useProductStore } from '@/stores/product';
+import Navbar from '@/components/NavBarComponent.vue'
+import Card from '@/components/CardComponent.vue';
+import { onMounted } from 'vue';
+import StockTableComponent from '@/components/Table/StockTableComponent.vue';
+
+const productStore = useProductStore();
+
+onMounted(async () => {
+  await productStore.loadDashboardData();
+})
+
 </script>
 
 <template>
 
-  <div class="min-h-screen  dark:bg-gray-800 dark:border-gray-700">
+  <div>
 
     <Navbar />
-    <router-view />
+    <!-- <router-view /> -->
+    <h1 class="text-3xl font-bold text-white p-4">Contagem</h1>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+      <Card title="Usuários" :count="productStore.productsCount" icon="🥷🏼" />
+      <Card title="Produtos" :count="productStore.productsCount" icon="📦" />
+      <Card title="Categorias" :count="productStore.productsCount" icon="📖" />
+
+    </div>
+
+    <StockTableComponent :data="productStore.lowStockProducts" />
+
   </div>
 </template>

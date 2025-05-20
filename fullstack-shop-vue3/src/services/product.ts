@@ -1,7 +1,8 @@
 import axios from 'axios';
+import { api } from '@/services/api';
 
 export async function fetchProducts(page: number, limit: number) {
-  const response = await axios.get('/products', {
+  const response = await api.get('/product', {
     params: {
       page,
       limit,
@@ -11,9 +12,9 @@ export async function fetchProducts(page: number, limit: number) {
 }
 
 export async function fetchProductsCount() {
-  const response = await axios.get('/products', {
+  const response = await api.get(`/product/count`, {
   });
-  return response.data;
+  return response.data.count;
 }
 
 export async function fetchRecentProducts() {
@@ -23,7 +24,7 @@ export async function fetchRecentProducts() {
  }
 
 export async function fetchLowStockProducts() {
-  const response = await axios.get('/products', {
+  const response = await api.get('/product/lowStock', {
   });
   return response.data;
  }
