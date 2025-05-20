@@ -11,9 +11,20 @@ export async function fetchProducts(page: number, limit: number) {
 }
 
 export async function fetchProductsCount() {
-
+  const response = await axios.get('/products', {
+  });
+  return response.data;
 }
 
 export async function fetchRecentProducts() {
-}
+  const response = await axios.get('/products', {
+  });
+  return response.data;
+ }
+
+export async function fetchLowStockProducts() {
+  const response = await axios.get('/products', {
+  });
+  return response.data;
+ }
 
