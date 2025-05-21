@@ -3,14 +3,23 @@ const props = defineProps<{
     title: string,
     count: number | null,
     icon: string,
+    onClick?: () => void
 }>()
+
+const handleClick = () => {
+    if (props.onClick) {
+        props.onClick()
+    }
+}
+
+
 </script>
 
 <template>
-    <div
-        class="bg-white dark:bg-gray-700 p-6 m-6 rounded-2xl shadow-lg flex items-center justify-between min-w-[300px] min-h-[120px]">
+    <div @click="handleClick" @keydown.enter="handleClick" tabindex="0"
+        class="bg-white dark:bg-gray-700 p-6 m-6 rounded-2xl shadow-lg flex items-center justify-between min-w-[300px] min-h-[120px]  transition-transform duration-300 hover:scale-105 hover:shadow-xl cursor-pointer">
         <!-- Ícone -->
-        
+
 
         <!-- Texto -->
         <div class="text-left">
