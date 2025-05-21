@@ -4,11 +4,12 @@ defineProps<{
   showActions: boolean;
   title: string;
   subtitle?: string;
+  buttonLabel?: string;
   columns: { key: string; label: string }[];
   data: Record<string, any>[];
 }>();
 
-defineEmits(['edit', 'delete']);
+defineEmits(['edit', 'delete', 'add']);
 </script>
 
 <template>
@@ -23,8 +24,9 @@ defineEmits(['edit', 'delete']);
       <button
         v-if="showActions"
         class="px-4 py-2 bg-teal-700 hover:bg-teal-600 text-white rounded-lg font-medium"
+        @click="$emit('add')"
       >
-        Adicionar {{ title }}
+        {{ buttonLabel ?? 'Adicionar' }}
       </button>
     </div>
 

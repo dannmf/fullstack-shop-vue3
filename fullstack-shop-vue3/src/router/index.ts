@@ -7,11 +7,11 @@ const routes = [
         path: '/',
         component: () => import('@/views/dashboard/Dashboard.vue'),
         meta: { requiresAuth: true },
-        children: [
+        children: [ 
             { path: 'products', component: () => import('@/views/modules/Products.vue') },
-            // { path: 'users', component: () => import('../views/Home.vue') },
             // { path: 'products', component: () => import('../views/Home.vue') },
             // { path: 'categories', component: () => import('../views/Home.vue') },
+            { path: '/:pathMatch(.*)*', redirect: '/' }
 
         ]
     }

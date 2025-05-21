@@ -1,20 +1,21 @@
-import { fetchLowStockProducts, fetchProducts, fetchProductsCount, fetchRecentProducts } from "@/services/product";
+import { fetchLowStockProducts, fetchProducts, fetchProductsCount } from "@/services/product";
+import type { Product } from "@/types/product";
 import { defineStore } from "pinia";
 
 export const useProductStore = defineStore('product', {
     state: () => ({
         productsCount: 0,
-        recentProducts: [] as Array<[id: number, name: string, price: number]>,
-        lowStockProducts: [] as Array<[id: number, name: string, stock: number]>,
-        allProducts: [] as Array<[id: number, name: string, price: number, stock: number]>,
+        lowStockProducts: [] as Product[],
+        allProducts: [] as Product[],
+        editProduct: {} as Product,
 
     }),
     actions: {
         async loadDashboardData() {
             this.allProducts = await fetchProducts(1, 10);
             this.productsCount = await fetchProductsCount();
-            this.recentProducts = await fetchRecentProducts();
             this.lowStockProducts = await fetchLowStockProducts();
+            this.editProduct = this.allProducts[0];
         }
     }
 
